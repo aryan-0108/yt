@@ -277,6 +277,7 @@ let handler = async (m, {
                 jpegThumbnail: await conn.resize(ppUrl, 100, 100), // Changed to use ppUrl directly
                 caption: Styles(capt),
                 contextInfo: {
+                mentionedJid: [m.sender],
                     isForwarded: true,
                     forwardingScore: 99999,
                     externalAdReply: {
@@ -284,15 +285,16 @@ let handler = async (m, {
                         title: ``,
                         mediaType: 1,
                         previewType: 1,
+                        title: `Powered By Asyl🐉`,
                         body: "I Am An Automated System WhatsApp Bot That Can Help To Do Something, Search And Get Data / Information Only Through WhatsApp.",
-                        thumbnailUrl: "https://files.catbox.moe/a66gg1.jpg",
+                        thumbnailUrl: "https://files.catbox.moe/sqtgqg.jpg",
                         renderLargerThumbnail: true,
                         sourceUrl: "https://alfisyl.my.id"
                     },
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363144038483540@newsletter',
                         serverMessageId: -1,
-                        newsletterName: 'Asyl UserBot',
+                        newsletterName: 'Simple WhatsApp Bot 🪀',
                     }
                 }
             }, {
@@ -358,7 +360,7 @@ let handler = async (m, {
         text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
         await conn.reply(m.chat, Styles(text).trim(), m)
     } catch (e) {
-        conn.reply(m.chat, 'Maaf, menu sedang error', m)
+        conn.reply(m.chat, 'ketik *.allmenu* je la', m)
         throw e
     }
 }
