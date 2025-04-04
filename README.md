@@ -1,4 +1,4 @@
-# **Simple Base** 
+# **Simple Wabot** 
 ## kelebihan
 ```javascript
 easy coding
@@ -57,13 +57,14 @@ module.exports = {
 
 ## 📢 Jgn Lupa Follow Channel dan Join Group ya
 
-<p>Follow Me    <a href="https://whatsapp.com/channel/0029Vb3LR5XD38CUOYS3Ry2B">Klik disini</a></p>
+<p>Follow Me    <a href="https://whatsapp.com/channel/0029Vb4fjWE1yT25R7epR110">Klik disini</a></p>
 
-<p>Join This Group   <a href="https://chat.whatsapp.com/DwiyKDLAuwjHqjPasln3WP">Klik disini</a></p>
+<p>Join This Group   <a href="https://kua.lat/gcbot">Klik disini</a></p>
 
 ---------
 
 ### Thanks To
+[![Nurutomo](https://github.com/Nazir99inf.png?size=100)](https://github.com/Nazir99inf)
 [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo)
 [![WhiskeySockets](https://github.com/WhiskeySockets.png?size=100)](https://github.com/WhiskeySockets/Baileys)
 [![BochilGaming](https://github.com/BochilGaming.png?size=100)](https://github.com/BochilGaming)
