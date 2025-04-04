@@ -64,7 +64,9 @@ module.exports = {
 ---------
 
 ### Thanks To
-[![Nurutomo](https://github.com/Nazir99inf.png?size=100)](https://github.com/Nazir99inf)
+[![Nazir](https://github.com/Nazir99inf.png?size=100)](https://github.com/Nazir99inf)
+[![Wildan](https://github.com/neoxr.png?size=100)](https://github.com/neoxr)
+[![syaii](https://github.com/LT-SYAII.png?size=100)](https://github.com/LT-SYAII)
 [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo)
 [![WhiskeySockets](https://github.com/WhiskeySockets.png?size=100)](https://github.com/WhiskeySockets/Baileys)
 [![BochilGaming](https://github.com/BochilGaming.png?size=100)](https://github.com/BochilGaming)
