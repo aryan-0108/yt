@@ -37,9 +37,9 @@ let handler = async (m, {
         throw `*can't get response from ai \n• Syntax: ${e}*`;
     }
 };
-handler.help = ["ai", "chatgpt", "openai", "gemini"].map((a) => a + " *[prompt]*");
+handler.help = ["ai", "openai"].map((a) => a + " *[prompt]*");
 handler.tags = ["ai"];
-handler.command = ["ai", "chatgpt", "openai", "gemini"];
+handler.command = ["ai", "openai"];
 module.exports = handler;
 
 async function AiGpt(prompt = prompt, assistant = null) {
