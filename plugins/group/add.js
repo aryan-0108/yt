@@ -6,7 +6,7 @@
 const {
     getBinaryNodeChild,
     getBinaryNodeChildren
-} = require('@adiwajshing/baileys')
+} = require('baileys')
 
 const fetch = require('node-fetch')
 
