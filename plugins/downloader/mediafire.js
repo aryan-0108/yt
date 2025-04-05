@@ -1,86 +1,98 @@
-const { fetch } = require("undici");
-const cheerio = require("cheerio");
-const { lookup } = require("mime-types");
+//Simple Base Botz
+// • Credits : wa.me/62895322391225 [ Asyl ]
+// • Feature : downloader/mediafire
 
-module.exports = {
-    help: ["mediafire", "mf", "mfdl", "mediafiredl"],
-    tags: ["downloader", "internet", "tools"],
-    command: ["mediafire", "mf", "mfdl", "mediafiredl"],
-    code: async (m, {
-        conn,
-        usedPrefix,
-        command,
-        text,
-        isOwner,
-        isAdmin,
-        isBotAdmin,
-        isPrems,
-        chatUpdate
-    }) => {
-        if (!text) throw `*Example:* ${usedPrefix + command} [url]`
-        conn.sendMessage(m.chat, {
-            react: {
-                text: '⏳',
-                key: m.key
-            }
-        });
-        const data = await MediaFire(text);
-        let cap = "*– 乂 MediaFire - Downloader*\n";
-        cap += `*📑Filename :* ${data.filename}\n`;
-        cap += `*🌿Tipe File :* ${data.mimetype}\n`;
-        cap += `*🍟Size :* ${data.size}`;
-        
-        await conn.sendMessage(
-            m.chat,
-            {
-              document: { url: data.link },
-              mimetype: data.mimetype,
-              fileName: data.filename,
-              caption: cap
-            },
-            { quoted: m }
-          );
+
+/*
+- PLUGINS MEDIAFIRE
+- Thanks untuk pembuat scrape ini
+- Source: https://whatsapp.com/channel/0029VakezCJDp2Q68C61RH2C
+- Ar sens
+*/
+const fetch = require('node-fetch');
+const {
+    lookup
+} = require('mime-types');
+//import fetch from 'node-fetch';
+//import { lookup } from "mime-types";
+
+async function MediaFire(url) {
+    try {
+        const response = await fetch(`https://r.jina.ai/${url}`);
+        const text = await response.text();
+
+        const result = {
+            filename: '',
+            size: '',
+            mimetype: '',
+            url: '',
+            repair: ''
+        };
+
+        const fileMatch = url.match(/\/file\/[^\/]+\/([^\/]+)/);
+        if (fileMatch) result.filename = decodeURIComponent(fileMatch[1]);
+
+        let ext = result.filename.split(".").pop();
+        if (ext) result.mimetype = lookup(ext.toLowerCase()) || `application/${ext}`;
+
+        const matchUrl = text.match(/(https:\/\/download\d+\.mediafire\.com\/[^\s"]+)/);
+        if (matchUrl) result.url = matchUrl[1];
+
+        const matchSize = text.match(/(\d+(\.\d+)?[KMGT]B)/);
+        if (matchSize) result.size = matchSize[1];
+
+        if (!result.url) return {
+            error: "Gagal mendapatkan link download."
+        };
+
+        return result;
+    } catch (error) {
+        return {
+            error: error.message
+        };
     }
 }
 
-async function MediaFire(url, retries = 5, delay = 2000) {
-    for (let attempt = 1; attempt <= retries; attempt++) {
-        try {
-            const allOriginsUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-            const response = await fetch(allOriginsUrl, {
-                headers: {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.178 Safari/537.36"
-                }
-            });
+let handler = async (m, {
+    conn,
+    text
+}) => {
+    if (!text) return m.reply('*Mana link MediaFire-nya?*');
 
-            if (!response.ok) throw new Error(`Fetch failed: ${response.statusText}`);
+    try {
+        let result = await MediaFire(text);
 
-            const data = await response.text();
-            const $ = cheerio.load(data);
-
-            const filename = $(".dl-btn-label").attr("title");
-            const ext = filename.split(".").pop();
-            const mimetype = lookup(ext.toLowerCase()) || "application/" + ext.toLowerCase();
-            const size = $(".input.popsok").text().trim().match(/\(([^)]+)\)/)[1];
-            const downloadUrl = ($("#downloadButton").attr("href") || "").trim();
-            const alternativeUrl = ($("#download_link > a.retry").attr("href") || "").trim();
-
-            return {
-                filename,
-                size,
-                mimetype,
-                link: downloadUrl || alternativeUrl,
-                alternativeUrl: alternativeUrl,
-            };
-        } catch (error) {
-            console.error(`Attempt ${attempt} failed: ${error.message}`);
-
-            if (attempt < retries) {
-                console.log(`Retrying in ${delay / 1000} seconds...`);
-                await new Promise(res => setTimeout(res, delay));
-            } else {
-                throw new Error("Failed to fetch data after multiple attempts");
-            }
+        if (result.error) {
+            return m.reply(`*${result.error}*`);
         }
+
+        let caption = `┌──⭓ *MEDIAFIRE DOWNLOADER*  
+│ *Nama:* ${result.filename}  
+│ *Ukuran:* ${result.size}  
+└───────────⭓  
+> Request By ${m.pushName}`;
+
+        await conn.sendMessage(m.chat, {
+            text: caption
+        }, m);
+        await conn.sendMessage(m.chat, {
+            document: {
+                url: result.url
+            },
+            mimetype: result.mimetype,
+            fileName: result.filename
+        }, m);
+    } catch (error) {
+        console.error(error);
+        m.reply('*Terjadi kesalahan saat mengambil link MediaFire.*');
     }
- }
+};
+
+handler.help = ['mediafire'].map(v => v + ' <url>');
+handler.tags = ['download'];
+handler.command = /^(mf|mediafire)$/i;
+handler.register = true
+handler.limit = 3;
+
+//export default handler;
+module.exports = handler;
