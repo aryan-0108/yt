@@ -6,64 +6,84 @@
 • untuk siapa pun yang ketahuan menjual script ini tanpa sepengetahuan developer mohon untuk dilaporkan !
 */
 
+//Simple Base Botz
+// • Credits : wa.me/62895322391225 [ Asyl ]
+// • Feature : group/group-totalmember.js
+
+
 module.exports = {
-  help: ["totalmem", "askot"].map((a) => a + " *[total member]*"),
-  tags: ["group"],
-  command: ["totalmem", "askot"],
-  group: true,
-  code: async (
-    m,
-    {
-      conn,
-      usedPrefix,
-      command,
-      text,
-      isOwner,
-      isAdmin,
-      isBotAdmin,
-      isPrems,
-      chatUpdate,
-    },
-  ) => {
-    let PhoneNum = require("awesome-phonenumber");
-    let regionNames = new Intl.DisplayNames(["en"], {
-      type: "region",
-    });
-    let data = conn.groupMetadata[m.chat].metadata;
-    let participants = data.participants;
+    help: ["totalmem", "askot"].map((a) => a + " *[total member]*"),
+    tags: ["group"],
+    command: ["totalmem", "askot"],
+    group: true,
+    code: async (
+        m, {
+            conn,
+            usedPrefix,
+            command,
+            text,
+            isOwner,
+            isAdmin,
+            isBotAdmin,
+            isPrems,
+            chatUpdate,
+        },
+    ) => {
+        let PhoneNum = require("awesome-phonenumber");
+        let regionNames = new Intl.DisplayNames(["en"], {
+            type: "region",
+        });
 
-    let countryMembers = {};
-    for (let participant of participants) {
-      let phoneNumber = "+" + participant.id.split("@")[0];
-      let regionCode = PhoneNum(phoneNumber).getRegionCode("internasional");
-      let country = regionNames.of(regionCode);
-      if (!countryMembers[country]) {
-        countryMembers[country] = [];
-      }
-      countryMembers[country].push(participant.id);
-    }
+        let groupMetadata = await conn.groupMetadata(m.chat);
+        if (!groupMetadata) return m.reply("Couldn't fetch group metadata");
 
-    let countryCounts = Object.keys(countryMembers).map((country) => ({
-      name: country,
-      total: countryMembers[country].length,
-      jid: countryMembers[country],
-    }));
+        let participants = groupMetadata.participants;
+        if (!participants) return m.reply("No participants found");
 
-    let totalSum = countryCounts.reduce(
-      (acc, country) => acc + country.total,
-      0,
-    );
-    let totalRegion = Object.keys(countryMembers).length;
+        let countryMembers = {};
+        for (let participant of participants) {
+            try {
+                let phoneNumber = "+" + participant.id.split("@")[0];
+                let phoneInfo = PhoneNum(phoneNumber);
+                if (!phoneInfo.isValid()) continue;
 
-    let hasil = countryCounts.map(({ name, total, jid }) => ({
-      name,
-      total,
-      jid,
-      percentage: ((total / totalSum) * 100).toFixed(2) + "%",
-    }));
+                let regionCode = phoneInfo.getRegionCode();
+                let country = regionNames.of(regionCode) || "Unknown";
 
-    let cap = `┌─⭓「 *TOTAL MEMBER* 」
-│ *• Name :* ${data.subject}
+                if (!countryMembers[country]) {
+                    countryMembers[country] = [];
+                }
+                countryMembers[country].push(participant.id);
+            } catch (e) {
+                console.error("Error processing participant:", participant.id, e);
+            }
+        }
+
+        let countryCounts = Object.keys(countryMembers).map((country) => ({
+            name: country,
+            total: countryMembers[country].length,
+            jid: countryMembers[country],
+        }));
+
+        let totalSum = countryCounts.reduce(
+            (acc, country) => acc + country.total,
+            0,
+        );
+        let totalRegion = Object.keys(countryMembers).length;
+
+        let hasil = countryCounts.map(({
+            name,
+            total,
+            jid
+        }) => ({
+            name,
+            total,
+            jid,
+            percentage: totalSum > 0 ? ((total / totalSum) * 100).toFixed(2) + "%" : "0%",
+        }));
+
+        let cap = `┌─⭓「 *TOTAL MEMBER* 」
+│ *• Name :* ${groupMetadata.subject || "Unknown"}
 │ *• Total :* ${participants.length}
 │ *• Total Region :* ${totalRegion}
 └───────────────⭓
@@ -77,6 +97,7 @@ ${hasil
   )
   .join("\n├───────────────⭓\n")}
 └───────────────⭓`;
-    conn.reply(m.chat, cap, fakestatus("*[ Total member ]*"));
-  },
+
+        conn.reply(m.chat, cap, fakestatus("*[ Total member ]*"));
+    },
 };
