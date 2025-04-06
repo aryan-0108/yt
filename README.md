@@ -19,7 +19,7 @@ No encrypt
 
 ```bash
 $ git clone https://github.com/Fiisya/simple-wabot
-$ cd simple-base
+$ cd simple-wabot
 $ npm install
 $ npm start
 ```
