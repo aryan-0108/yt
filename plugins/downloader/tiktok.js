@@ -76,7 +76,7 @@ let handler = async (m, {
     }
 };
 
-handler.help = ["tt", "tiktok", "ttslide", "ttdl"].map((a) => a + " *[Tiktok Url]*");
+handler.help = ["tiktok"].map((a) => a + " *[Tiktok Url]*");
 handler.tags = ["downloader"];
 handler.command = ["tt", "tiktok", "ttslide", "ttdl"];
 

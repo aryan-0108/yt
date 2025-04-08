@@ -71,7 +71,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     throw eror;
   }
 };
-handler.help = ["tiktoks", "ttsearch"].map((a) => a + " *[query]*");
+handler.help = ["ttsearch"].map((a) => a + " *[query]*");
 handler.tags = ["downloader"];
 handler.command = ["tiktoks", "ttsearch"];
 

@@ -85,7 +85,7 @@ let handler = async (m, {
 };
 
 handler.help = ['teraboxdl'].map(v => v + ' <url>');
-handler.tags = ['downloader', 'menuprem'];
+handler.tags = ['downloader'];
 handler.command = /^(teraboxdl|terabox)$/i;
 handler.limit = true;
 handler.premium = true;

@@ -89,7 +89,7 @@ let handler = async (m, {
 };
 
 handler.help = ['mediafire'].map(v => v + ' <url>');
-handler.tags = ['download'];
+handler.tags = ['downloader'];
 handler.command = /^(mf|mediafire)$/i;
 handler.register = true
 handler.limit = 3;

@@ -117,7 +117,7 @@ const handler = async (m, {
         }
     }
 }
-handler.help = ["ytaudio", "ytmp3", "yta"].map((a) => a + ` *[query/url]*`);
+handler.help = ["ytmp3",].map((a) => a + ` *[query/url]*`);
 handler.tags = ["downloader"];
 handler.command = ["ytaudio", "ytmp3", "yta"];
 

@@ -1,5 +1,5 @@
 module.exports = {
-  help: ["gdrive", "driveurl"].map((a) => a + " *[drive url]*"),
+  help: ["gdrive"].map((a) => a + " *[drive url]*"),
   tags: ["downloader"],
   command: ["gdrive", "drivedl"],
   code: async (

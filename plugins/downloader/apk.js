@@ -26,7 +26,7 @@ let handler = async (m, {
           return m.reply(`*[❗] An error occurred. Please try again later.*`);
         }
 };
-handler.help = ["apkmod", "happymod", "apk"].map((a) => a + " *[search/url]*");
+handler.help = ["apkmod"].map((a) => a + " *[search/url]*");
 handler.tags = ["downloader"];
 handler.command = ["apkmod", "happymod", "apk"];
 

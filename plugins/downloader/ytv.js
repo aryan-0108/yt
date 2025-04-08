@@ -48,7 +48,7 @@ const handler = async (m, {
     }
 };
 
-handler.help = ["ytmp4", "ytvid", "ytv"];
+handler.help = ["ytmp4"];
 handler.tags = ['downloader'];
 handler.command = ["ytmp4", "ytvid", "ytv"];
 

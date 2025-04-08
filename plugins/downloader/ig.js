@@ -28,7 +28,7 @@ let handler = async (m, {
         m.reply(eror);
     }
 };
-handler.help = ["ig", "instagram", "igdl"].map((a) => a + " *instagram url*");
+handler.help = ["instagram"].map((a) => a + " *instagram url*");
 handler.tags = ["downloader"];
 handler.command = ["ig", "instagram", "igdl"];
 module.exports = handler;

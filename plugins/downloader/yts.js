@@ -32,7 +32,7 @@ body :q.map((a, i) => `*• ${i + 1}.* ${a.title.toUpperCase()}
         throw e;
     }
 }
-handler.help = ["yts", "ytsearch"].map(a => a + " *[query]*");
+handler.help = ["ytsearch"].map(a => a + " *[query]*");
 handler.tags = ["downloader"];
 handler.command = ["yts", "ytsearch"];
 

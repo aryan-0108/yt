@@ -1,5 +1,5 @@
 module.exports = {
-  help: ["tiktostalk", "tiktok_stalk"],
+  help: ["tiktostalk"],
   tags: ["downloader"],
   command: ["tiktostalk", "tiktok_stalk"],
   code: async (
