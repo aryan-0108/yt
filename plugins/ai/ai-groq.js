@@ -37,7 +37,7 @@ let handler = async (m, {
         throw `*can't get response from ai \n• Syntax: ${e}*`;
     }
 };
-handler.help = ["ai", "openai"].map((a) => a + " *[prompt]*");
+handler.help = ["ai"].map((a) => a + " *[prompt]*");
 handler.tags = ["ai"];
 handler.command = ["ai", "openai"];
 module.exports = handler;
