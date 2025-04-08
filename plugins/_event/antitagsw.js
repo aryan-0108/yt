@@ -3,7 +3,7 @@
  * credits: Nazir
  * simple WhatsApp bot
  */
-async function before(m, {
+/* async fution before(m, {
     isBotAdmin,
     isAdmin
 }) {
@@ -53,4 +53,4 @@ async function before(m, {
 }
 module.exports = {
     before
-}
+} */
