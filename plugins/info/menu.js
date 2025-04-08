@@ -43,9 +43,10 @@ Styles = (text, style = 1) => {
 };
 const defaultMenu = {
     before: ``.trimStart(),
-    header: '',
-    body: '◦ %cmd',
-    footer: '',
+header: `≡ *%category*
+┌`,
+  body: '│➤ %cmd',
+  footer: `└`,
     after: ``,
 }
 let handler = async (m, {
@@ -57,42 +58,6 @@ let handler = async (m, {
     await conn.sendMessage(m.chat, {
         react: {
             text: '🕒',
-            key: m.key
-        }
-    })
-    await conn.sendMessage(m.chat, {
-        react: {
-            text: '1️⃣',
-            key: m.key
-        }
-    })
-    await conn.sendMessage(m.chat, {
-        react: {
-            text: '2️⃣',
-            key: m.key
-        }
-    })
-    await conn.sendMessage(m.chat, {
-        react: {
-            text: '3️⃣',
-            key: m.key
-        }
-    })
-    await conn.sendMessage(m.chat, {
-        react: {
-            text: '4️⃣',
-            key: m.key
-        }
-    })
-    await conn.sendMessage(m.chat, {
-        react: {
-            text: '5️⃣',
-            key: m.key
-        }
-    })
-    await conn.sendMessage(m.chat, {
-        react: {
-            text: '☑️',
             key: m.key
         }
     })
@@ -340,18 +305,17 @@ let handler = async (m, {
                 id: 1
             }
             if (conn.menubot.id === 1) {
-                let tekss = '`</> Bot Information </>`\n\n'
-                tekss += '> ```Name Bot```:' + ` Asyl-Botz\n`
-                tekss += '> ```Uptime```:' + ` ${uptime}\n`
-                tekss += '> ```Date```:' + ` ${tanggal}\n`
-                tekss += '> ```Pengguna```:' + ` ${totalreg} Users\n`
-                tekss += '> ```Groups```:' + ` ${group.length} Groups\n`
-                tekss += '> ```Memory```:' + ` ${format(os.totalmem() - os.freemem())} / ${format(os.totalmem())}\n\n`
-                tekss += '`</> User Information </>`\n\n'
-                tekss += '> ```Name```:' + ` ${name}\n`
-                tekss += '> ```Limit```:' + ` ${lim}\n`
-                tekss += '> ```Status```:' + ` ${isPremium}\n`
-                tekss += '> ```Saldo```:' + ` Rp ${toRupiah(user.saldo)}\n`
+                let tekss = ` –   *BOT INFORMATION*\n`
+                tekss += '┌  ◦ Name Bot:' + ` Asyl-Botz\n`
+                tekss += '│  ◦ Uptime:' + ` ${uptime}\n`
+                tekss += '│  ◦ Date:' + ` ${tanggal}\n`
+                tekss += '│  ◦ Pengguna:' + ` ${totalreg} Users\n`
+                tekss += '│  ◦ Groups:' + ` ${group.length} Groups\n`
+                tekss += '└  ◦ Memory:' + ` ${format(os.totalmem() - os.freemem())} / ${format(os.totalmem())}\n\n`
+                tekss +=` –   *USER INFORMATION*\n`
+                tekss += '┌  ◦ Name:' + ` ${name}\n`
+                tekss += '│  ◦ Limit:' + ` ${lim}\n`
+                tekss += '└  ◦ Status:' + ` ${isPremium}\n`
                 let sections = [{
                         title: 'List menu',
                         highlight_label: 'Populer Plugins',
@@ -515,7 +479,7 @@ let handler = async (m, {
                                     text: 'Click the button below for the menu list'
                                 }),
                                 header: proto.Message.InteractiveMessage.Header.create({
-                                    title: `*Hello, @${m.sender.replace(/@.+/g, '')}! 🪸 I am an automated system (WhatsApp Bot) that can help to do something, search and get data / information only through WhatsApp.*`,
+                                    title: `Hello, @${m.sender.replace(/@.+/g, '')} 🪸 I am an automated system (WhatsApp Bot) that can help to do something, search and get data / information only through WhatsApp.`,
                                     subtitle: "Asyl",
                                     hasMediaAttachment: true,
                                     ...(await prepareWAMessageMedia({
