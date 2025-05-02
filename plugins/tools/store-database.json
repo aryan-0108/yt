@@ -1,0 +1,37 @@
+{
+  "store": {
+    "62895322391225@s.whatsapp.net": [
+      {
+        "key": "mybiolink",
+        "response": "biolink.alfitech.xyz"
+      }
+    ],
+    "120363392603301356@g.us": [
+      {
+        "key": "intro",
+        "response": "*INTRO*\n*✧–––––––✄–––––––✧*\n☞𝙉𝙖𝙢𝙖 =\n☞𝘼𝙨𝙠𝙤𝙩 =\n☞𝙂𝙚𝙣𝙙𝙚𝙧 =\n☞𝙐𝙢𝙪𝙧 =\n☞𝙍𝙖𝙣𝙠 ="
+      }
+    ],
+    "120363207315318741@g.us": [
+      {
+        "key": "bot",
+        "response": "apa itam"
+      },
+      {
+        "key": "tes",
+        "response": "apa itam"
+      },
+      {
+        "key": "ken",
+        "response": "si ken hitam bnget jir"
+      }
+    ]
+  },
+  "transactions": {},
+  "setlist": {
+    "62895322391225@s.whatsapp.net": "untuk grup ini:\n\nSetlist belum diatur.",
+    "120363217994871358@g.us": "untuk grup ini:\n\nuntuk grup ini:\n\nuntuk grup ini:\n\nSetlist belum diatur.",
+    "120363207315318741@g.us": "p"
+  },
+  "addlist": {}
+}
