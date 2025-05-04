@@ -2,25 +2,25 @@ let { Scraper, Uploader } = require("akiraa-scrape");
 const moment = require("moment-timezone");
 
 /*--------[ OWNER SETTING ]------------*/
-global.owner = ["62895322391225", "62895615063060"];
-global.mods = ["62895322391225"]; // Moderator
-global.prems = ["6283867483321"]; // Premium
-global.numberbot = "6283867483321";
-global.nameowner = "@Asyl";
-global.nomorown = "62895322391225";
+global.owner = ["6282264636742", "6282338009979"];
+global.mods = ["6282264636742"]; // Moderator
+global.prems = ["6282264636742"]; // Premium
+global.numberbot = "6282338009979";
+global.nameowner = "@king";
+global.nomorown = "6282264636742";
 
 
 /*--------[ BOT SETTING ]------------*/
-global.namebot = "Asyl-Bot";
-global.swa = "wa.me/62895322391225";
+global.namebot = "King-Bot";
+global.swa = "wa.me/6282264636742";
 global.version = "1.0.0";
-global.wm = "© Asyl";
+global.wm = "© King";
 global.isPairing = true;
 global.wait = "*( Loading )* Plase Wait...";
 global.eror = "*Error System*";
-global.done = `*Success Result*\n© Simple Whatsapp bot by Asyl`;
+global.done = `*Success Result*\n© Simple Whatsapp bot by King`;
 global.maxwarn = '3' // Peringatan maksimum Warn
-global.packname = "© Asyl";
+global.packname = "© Kingdom";
 global.author = `Time : ${moment.tz("Asia/Makassar")}`;
 
 /*--------[ MY LINK SETTING ]------------*/
@@ -66,7 +66,7 @@ global.fakestatus = (txt) => {
 
 global.fkontak = {
 key: {
-          participants: "62895322391225@s.whatsapp.net",
+          participants: "6282264636742@s.whatsapp.net",
           remoteJid: "status@broadcast",
           fromMe: false,
           id: "Halo",
